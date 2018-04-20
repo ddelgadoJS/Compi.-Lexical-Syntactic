@@ -300,18 +300,52 @@ public class Parser {
 
         case Token.WHILE:{
             acceptIt();
+            Expression eAST = parseExpression();
             accept(Token.DO);
-            //no se que hacer con lo de command por que es command no single command jeje    
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            commandAST = new WhileCommand(eAST, cAST, commandPos);
         }
         case Token.UNTIL:{
-        
+            acceptIt();
+            Expression eAST = parseExpression();
+            accept(Token.DO);
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            //commandAST = new UntilCommand(eAST, cAST, commandPos);
+                  
         }
         case Token.FOR:{
-        
+            acceptIt();
+            Identifier iAST= parseIdentifier();
+            accept(Token.IS);
+            Expression eAST= parseExpression();
+            accept(Token.TO);
+            Expression eAST1 = parseExpression();
+            accept(Token.DO);
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+           // commandAST = new ForCommand(); //
         }
         
         } 
     }
+    
+    case Token.LET:
+      {
+        acceptIt();
+        Declaration dAST = parseDeclaration();
+        accept(Token.IN);   
+        Command cAST = parseCommand();
+        accept(Token.END);
+        finish(commandPos);
+        commandAST = new LetCommand(dAST, cAST, commandPos);
+      }
+      break;
+      
 //Eliminar "begin" Command "end"
 
  /*   case Token.BEGIN:

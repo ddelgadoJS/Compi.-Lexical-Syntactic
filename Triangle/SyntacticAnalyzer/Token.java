@@ -85,29 +85,30 @@ final class Token extends Object {
     PROC		= 19,
     RECORD		= 20,
     THEN		= 21,
-    TYPE		= 22,
-    UNTIL               = 23, // Se agrego until      
-    VAR			= 24,
-    WHILE		= 25,
+    TO                  = 22,
+    TYPE		= 23,
+    UNTIL               = 24, // Se agrego until      
+    VAR			= 25,
+    WHILE		= 26,
 
     // punctuation...
-    DOT			= 26,
-    COLON		= 27,
-    SEMICOLON	        = 28,
-    COMMA		= 29,
-    BECOMES		= 30,
-    IS			= 31,
+    DOT			= 27,
+    COLON		= 28,
+    SEMICOLON	        = 29,
+    COMMA		= 30,
+    BECOMES		= 31,
+    IS			= 32,
 
     // brackets...
-    LPAREN		= 32,
-    RPAREN		= 33,
-    LBRACKET	        = 34,
-    RBRACKET	        = 35,
-    LCURLY		= 36,
-    RCURLY		= 37,
+    LPAREN		= 33,
+    RPAREN		= 34,
+    LBRACKET	        = 35,
+    RBRACKET	        = 36,
+    LCURLY		= 37,
+    RCURLY		= 38,
     // special tokens...
-    EOT			= 38,
-    ERROR		= 39;
+    EOT			= 39,
+    ERROR		= 40;
   
   private static String[] tokenTable = new String[] {
     "<int>",
@@ -132,6 +133,7 @@ final class Token extends Object {
     "proc",
     "record",
     "then",
+    "to",
     "type",
     "var",
     "while",
