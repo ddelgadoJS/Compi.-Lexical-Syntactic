@@ -12,7 +12,7 @@
  * of the authors.
  */
 
-package Triangle.SyntacticAnalyzer;
+package SyntacticAnalyzer;
 
 
 final class Token extends Object {
@@ -72,39 +72,43 @@ final class Token extends Object {
     CONST		= 6,
     DO			= 7,
     ELSE		= 8,
-    END			= 9,
-    FUNC		= 10,
-    IF			= 11,
-    IN			= 12,
-    LET			= 13,
-    OF			= 14,
-    PROC		= 15,
-    RECORD		= 16,
-    THEN		= 17,
-    TYPE		= 18,
-    VAR			= 19,
-    WHILE		= 20,
+    ELSEIF              = 9, // se agrega elseif
+    END			= 10,
+    FOR                 = 11, //se agrego for
+    FUNC		= 12,
+    IF			= 13,
+    IN			= 14,
+    LET			= 15,
+    LOOP                = 16, // Se agrego loop
+    NOTHING             = 17, // se agrego nothing
+    OF			= 18,
+    PROC		= 19,
+    RECORD		= 20,
+    THEN		= 21,
+    TYPE		= 22,
+    UNTIL               = 23, // Se agrego until      
+    VAR			= 24,
+    WHILE		= 25,
 
     // punctuation...
-    DOT			= 21,
-    COLON		= 22,
-    SEMICOLON	= 23,
-    COMMA		= 24,
-    BECOMES		= 25,
-    IS			= 26,
+    DOT			= 26,
+    COLON		= 27,
+    SEMICOLON	        = 28,
+    COMMA		= 29,
+    BECOMES		= 30,
+    IS			= 31,
 
     // brackets...
-    LPAREN		= 27,
-    RPAREN		= 28,
-    LBRACKET	= 29,
-    RBRACKET	= 30,
-    LCURLY		= 31,
-    RCURLY		= 32,
-
+    LPAREN		= 32,
+    RPAREN		= 33,
+    LBRACKET	        = 34,
+    RBRACKET	        = 35,
+    LCURLY		= 36,
+    RCURLY		= 37,
     // special tokens...
-    EOT			= 33,
-    ERROR		= 34;
-
+    EOT			= 38,
+    ERROR		= 39;
+  
   private static String[] tokenTable = new String[] {
     "<int>",
     "<char>",
@@ -115,11 +119,15 @@ final class Token extends Object {
     "const",
     "do",
     "else",
+    "elseif", //elseif
     "end",
+    "for", //for
     "func",
     "if",
     "in",
     "let",
+    "loop", //loop
+    "nothing", //nothiny
     "of",
     "proc",
     "record",
