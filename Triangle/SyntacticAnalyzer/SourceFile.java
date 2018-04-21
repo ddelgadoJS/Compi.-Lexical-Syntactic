@@ -12,7 +12,7 @@
  * of the authors.
  */
 
-package Triangle.SyntacticAnalyzer;
+package SyntacticAnalyzer;
 
 public class SourceFile {
 

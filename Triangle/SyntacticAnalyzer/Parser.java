@@ -12,75 +12,75 @@
  * of the authors.
  */
 
-package Triangle.SyntacticAnalyzer;
+package SyntacticAnalyzer;
 
 import Triangle.ErrorReporter;
-import Triangle.AbstractSyntaxTrees.ActualParameter;
-import Triangle.AbstractSyntaxTrees.ActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.ArrayAggregate;
-import Triangle.AbstractSyntaxTrees.ArrayExpression;
-import Triangle.AbstractSyntaxTrees.ArrayTypeDenoter;
-import Triangle.AbstractSyntaxTrees.AssignCommand;
-import Triangle.AbstractSyntaxTrees.BinaryExpression;
-import Triangle.AbstractSyntaxTrees.CallCommand;
-import Triangle.AbstractSyntaxTrees.CallExpression;
-import Triangle.AbstractSyntaxTrees.CharacterExpression;
-import Triangle.AbstractSyntaxTrees.CharacterLiteral;
-import Triangle.AbstractSyntaxTrees.Command;
-import Triangle.AbstractSyntaxTrees.ConstActualParameter;
-import Triangle.AbstractSyntaxTrees.ConstDeclaration;
-import Triangle.AbstractSyntaxTrees.ConstFormalParameter;
-import Triangle.AbstractSyntaxTrees.Declaration;
-import Triangle.AbstractSyntaxTrees.DotVname;
-import Triangle.AbstractSyntaxTrees.EmptyActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.EmptyCommand;
-import Triangle.AbstractSyntaxTrees.EmptyFormalParameterSequence;
-import Triangle.AbstractSyntaxTrees.Expression;
-import Triangle.AbstractSyntaxTrees.FieldTypeDenoter;
-import Triangle.AbstractSyntaxTrees.FormalParameter;
-import Triangle.AbstractSyntaxTrees.FormalParameterSequence;
-import Triangle.AbstractSyntaxTrees.FuncActualParameter;
-import Triangle.AbstractSyntaxTrees.FuncDeclaration;
-import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
-import Triangle.AbstractSyntaxTrees.Identifier;
-import Triangle.AbstractSyntaxTrees.IfCommand;
-import Triangle.AbstractSyntaxTrees.IfExpression;
-import Triangle.AbstractSyntaxTrees.IntegerExpression;
-import Triangle.AbstractSyntaxTrees.IntegerLiteral;
-import Triangle.AbstractSyntaxTrees.LetCommand;
-import Triangle.AbstractSyntaxTrees.LetExpression;
-import Triangle.AbstractSyntaxTrees.MultipleActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.MultipleArrayAggregate;
-import Triangle.AbstractSyntaxTrees.MultipleFieldTypeDenoter;
-import Triangle.AbstractSyntaxTrees.MultipleFormalParameterSequence;
-import Triangle.AbstractSyntaxTrees.MultipleRecordAggregate;
-import Triangle.AbstractSyntaxTrees.Operator;
-import Triangle.AbstractSyntaxTrees.ProcActualParameter;
-import Triangle.AbstractSyntaxTrees.ProcDeclaration;
-import Triangle.AbstractSyntaxTrees.ProcFormalParameter;
-import Triangle.AbstractSyntaxTrees.Program;
-import Triangle.AbstractSyntaxTrees.RecordAggregate;
-import Triangle.AbstractSyntaxTrees.RecordExpression;
-import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
-import Triangle.AbstractSyntaxTrees.SequentialCommand;
-import Triangle.AbstractSyntaxTrees.SequentialDeclaration;
-import Triangle.AbstractSyntaxTrees.SimpleTypeDenoter;
-import Triangle.AbstractSyntaxTrees.SimpleVname;
-import Triangle.AbstractSyntaxTrees.SingleActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.SingleArrayAggregate;
-import Triangle.AbstractSyntaxTrees.SingleFieldTypeDenoter;
-import Triangle.AbstractSyntaxTrees.SingleFormalParameterSequence;
-import Triangle.AbstractSyntaxTrees.SingleRecordAggregate;
-import Triangle.AbstractSyntaxTrees.SubscriptVname;
-import Triangle.AbstractSyntaxTrees.TypeDeclaration;
-import Triangle.AbstractSyntaxTrees.TypeDenoter;
-import Triangle.AbstractSyntaxTrees.UnaryExpression;
-import Triangle.AbstractSyntaxTrees.VarActualParameter;
-import Triangle.AbstractSyntaxTrees.VarDeclaration;
-import Triangle.AbstractSyntaxTrees.VarFormalParameter;
-import Triangle.AbstractSyntaxTrees.Vname;
-import Triangle.AbstractSyntaxTrees.VnameExpression;
-import Triangle.AbstractSyntaxTrees.WhileCommand;
+import AbstractSyntaxTrees.ActualParameter;
+import AbstractSyntaxTrees.ActualParameterSequence;
+import AbstractSyntaxTrees.ArrayAggregate;
+import AbstractSyntaxTrees.ArrayExpression;
+import AbstractSyntaxTrees.ArrayTypeDenoter;
+import AbstractSyntaxTrees.AssignCommand;
+import AbstractSyntaxTrees.BinaryExpression;
+import AbstractSyntaxTrees.CallCommand;
+import AbstractSyntaxTrees.CallExpression;
+import AbstractSyntaxTrees.CharacterExpression;
+import AbstractSyntaxTrees.CharacterLiteral;
+import AbstractSyntaxTrees.Command;
+import AbstractSyntaxTrees.ConstActualParameter;
+import AbstractSyntaxTrees.ConstDeclaration;
+import AbstractSyntaxTrees.ConstFormalParameter;
+import AbstractSyntaxTrees.Declaration;
+import AbstractSyntaxTrees.DotVname;
+import AbstractSyntaxTrees.EmptyActualParameterSequence;
+import AbstractSyntaxTrees.EmptyCommand;
+import AbstractSyntaxTrees.EmptyFormalParameterSequence;
+import AbstractSyntaxTrees.Expression;
+import AbstractSyntaxTrees.FieldTypeDenoter;
+import AbstractSyntaxTrees.FormalParameter;
+import AbstractSyntaxTrees.FormalParameterSequence;
+import AbstractSyntaxTrees.FuncActualParameter;
+import AbstractSyntaxTrees.FuncDeclaration;
+import AbstractSyntaxTrees.FuncFormalParameter;
+import AbstractSyntaxTrees.Identifier;
+import AbstractSyntaxTrees.IfCommand;
+import AbstractSyntaxTrees.IfExpression;
+import AbstractSyntaxTrees.IntegerExpression;
+import AbstractSyntaxTrees.IntegerLiteral;
+import AbstractSyntaxTrees.LetCommand;
+import AbstractSyntaxTrees.LetExpression;
+import AbstractSyntaxTrees.MultipleActualParameterSequence;
+import AbstractSyntaxTrees.MultipleArrayAggregate;
+import AbstractSyntaxTrees.MultipleFieldTypeDenoter;
+import AbstractSyntaxTrees.MultipleFormalParameterSequence;
+import AbstractSyntaxTrees.MultipleRecordAggregate;
+import AbstractSyntaxTrees.Operator;
+import AbstractSyntaxTrees.ProcActualParameter;
+import AbstractSyntaxTrees.ProcDeclaration;
+import AbstractSyntaxTrees.ProcFormalParameter;
+import AbstractSyntaxTrees.Program;
+import AbstractSyntaxTrees.RecordAggregate;
+import AbstractSyntaxTrees.RecordExpression;
+import AbstractSyntaxTrees.RecordTypeDenoter;
+import AbstractSyntaxTrees.SequentialCommand;
+import AbstractSyntaxTrees.SequentialDeclaration;
+import AbstractSyntaxTrees.SimpleTypeDenoter;
+import AbstractSyntaxTrees.SimpleVname;
+import AbstractSyntaxTrees.SingleActualParameterSequence;
+import AbstractSyntaxTrees.SingleArrayAggregate;
+import AbstractSyntaxTrees.SingleFieldTypeDenoter;
+import AbstractSyntaxTrees.SingleFormalParameterSequence;
+import AbstractSyntaxTrees.SingleRecordAggregate;
+import AbstractSyntaxTrees.SubscriptVname;
+import AbstractSyntaxTrees.TypeDeclaration;
+import AbstractSyntaxTrees.TypeDenoter;
+import AbstractSyntaxTrees.UnaryExpression;
+import AbstractSyntaxTrees.VarActualParameter;
+import AbstractSyntaxTrees.VarDeclaration;
+import AbstractSyntaxTrees.VarFormalParameter;
+import AbstractSyntaxTrees.Vname;
+import AbstractSyntaxTrees.VnameExpression;
+import AbstractSyntaxTrees.WhileCommand;
 
 public class Parser {
 
@@ -292,12 +292,68 @@ public class Parser {
         }
       }
       break;
+      
+    //Agregar "loop" "while" Expression "do" Command
+    case Token.LOOP:{
 
-    case Token.BEGIN:
+        switch (currentToken.kind) {
+
+        case Token.WHILE:{
+            acceptIt();
+            Expression eAST = parseExpression();
+            accept(Token.DO);
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            commandAST = new WhileCommand(eAST, cAST, commandPos);
+        }
+        case Token.UNTIL:{
+            acceptIt();
+            Expression eAST = parseExpression();
+            accept(Token.DO);
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+            //commandAST = new UntilCommand(eAST, cAST, commandPos);
+                  
+        }
+        case Token.FOR:{
+            acceptIt();
+            Identifier iAST= parseIdentifier();
+            accept(Token.IS);
+            Expression eAST= parseExpression();
+            accept(Token.TO);
+            Expression eAST1 = parseExpression();
+            accept(Token.DO);
+            Command cAST = parseCommand();
+            accept(Token.END);
+            finish(commandPos);
+           // commandAST = new ForCommand(); //
+        }
+        
+        } 
+    }
+    
+    case Token.LET:
+      {
+        acceptIt();
+        Declaration dAST = parseDeclaration();
+        accept(Token.IN);   
+        Command cAST = parseCommand();
+        accept(Token.END);
+        finish(commandPos);
+        commandAST = new LetCommand(dAST, cAST, commandPos);
+      }
+      break;
+      
+//Eliminar "begin" Command "end"
+
+ /*   case Token.BEGIN:
       acceptIt();
       commandAST = parseCommand();
       accept(Token.END);
       break;
+//Eliminar "let" Declaration "in" single-Command
 
     case Token.LET:
       {
@@ -309,7 +365,7 @@ public class Parser {
         commandAST = new LetCommand(dAST, cAST, commandPos);
       }
       break;
-
+// Eliminar "if" Expression "then" single-Command "else" | "while" Expression "do" single-Command
     case Token.IF:
       {
         acceptIt();
@@ -322,7 +378,7 @@ public class Parser {
         commandAST = new IfCommand(eAST, c1AST, c2AST, commandPos);
       }
       break;
-
+*/
     case Token.WHILE:
       {
         acceptIt();
@@ -339,7 +395,8 @@ public class Parser {
     case Token.ELSE:
     case Token.IN:
     case Token.EOT:
-
+    case Token.NOTHING:    
+    
       finish(commandPos);
       commandAST = new EmptyCommand(commandPos);
       break;
