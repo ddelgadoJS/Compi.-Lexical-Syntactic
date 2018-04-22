@@ -72,7 +72,7 @@ final class Token extends Object {
     CONST		= 6,
     DO			= 7,
     ELSE		= 8,
-    ELSEIF              = 9, // se agrega elseif
+    ELSIF              = 9, // se agrega elsif
     END			= 10,
     FOR                 = 11, //se agrego for
     FUNC		= 12,
@@ -90,6 +90,10 @@ final class Token extends Object {
     UNTIL               = 24, // Se agrego until      
     VAR			= 25,
     WHILE		= 26,
+    AND                 = 27, // AND added.
+    PRIVATE             = 28, // PRIVATE added.
+    REC                 = 29, // AND added.
+    TO                  = 30, // TO added.
 
     // punctuation...
     DOT			= 27,
@@ -120,7 +124,7 @@ final class Token extends Object {
     "const",
     "do",
     "else",
-    "elseif", //elseif
+    "elsif", //elsif
     "end",
     "for", //for
     "func",
@@ -137,6 +141,10 @@ final class Token extends Object {
     "type",
     "var",
     "while",
+    "and", // and
+    "private", // private
+    "rec", // rec
+    "to", // to
     ".",
     ":",
     ";",
