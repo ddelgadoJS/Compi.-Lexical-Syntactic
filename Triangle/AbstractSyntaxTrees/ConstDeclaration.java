@@ -25,6 +25,13 @@ public class ConstDeclaration extends Declaration {
     E = eAST;
   }
 
+  public ConstDeclaration (Declaration dAST1, Declaration dAST2,
+                    SourcePosition thePosition) {
+    super (thePosition);
+    I = iAST;
+    E = eAST;
+  }
+
   public Object visit(Visitor v, Object o) {
     return v.visitConstDeclaration(this, o);
   }
