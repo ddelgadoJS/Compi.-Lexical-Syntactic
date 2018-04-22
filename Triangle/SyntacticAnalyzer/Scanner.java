@@ -12,7 +12,7 @@
  * of the authors.
  */
 
-package SyntacticAnalyzer;
+package Triangle.SyntacticAnalyzer;
 
 
 public final class Scanner {

@@ -80,8 +80,6 @@ public class Compiler {
         encoder  = new Encoder(reporter);
         drawer   = new Drawer();
 
-        /* Commented because this is out of the scope of the proyect.
-
         // scanner.enableDebugging();
         theAST = parser.parseProgram();				// 1st pass
         if (reporter.numErrors == 0) {
@@ -98,8 +96,6 @@ public class Compiler {
                 encoder.encodeRun(theAST, showingTable);	// 3rd pass
             }
         }
-
-        */
 
 	boolean successful = (reporter.numErrors == 0);
         if (successful) {

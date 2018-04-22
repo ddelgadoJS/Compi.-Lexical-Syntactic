@@ -12,7 +12,7 @@
  * of the authors.
  */
 
-package SyntacticAnalyzer;
+package Triangle.SyntacticAnalyzer;
 
 
 final class Token extends Object {
@@ -64,56 +64,51 @@ final class Token extends Object {
     INTLITERAL	= 0,
     CHARLITERAL	= 1,
     IDENTIFIER	= 2,
-    OPERATOR	  = 3,
+    OPERATOR	= 3,
 
     // reserved words - must be in alphabetical order...
-    ARRAY		    = 4,
-    BEGIN		    = 5,
-    CONST	 	    = 6,
-    DO		 	    = 7,
-    ELSE		    = 8,
-    ELSIF       = 9,  // ELSIF added.
-    END		  	  = 10,
-    FOR         = 11, // FOR added.
-    FUNC		    = 12,
-    IF		     	= 13,
-    IN		     	= 14,
-    LET		     	= 15,
-    LOOP        = 16, // LOOP added.
-    NOTHING     = 17, // NOTHING added.
-    OF		   	  = 18,
-    PROC	     	= 19,
-    RECORD     	= 20,
-    THEN	     	= 21,
-    TO          = 22,
-    TYPE	     	= 23,
-    UNTIL       = 24, // UNTIL added.      
-    VAR		     	= 25,
-    WHILE	   	  = 26,
-    AND         = 27, // AND added.
-    PRIVATE     = 28, // PRIVATE added.
-    REC         = 29, // AND added.
-    TO          = 30, // TO added.
-  
+    ARRAY		= 4,
+    BEGIN		= 5,
+    CONST		= 6,
+    DO			= 7,
+    ELSE		= 8,
+    ELSEIF              = 9, // se agrega elseif
+    END			= 10,
+    FOR                 = 11, //se agrego for
+    FUNC		= 12,
+    IF			= 13,
+    IN			= 14,
+    LET			= 15,
+    LOOP    = 16, // se agrego loop
+    NOTHING = 17, // se agrego nothing
+    OF			= 18,
+    PROC		= 19,
+    RECORD		= 20,
+    THEN		= 21,
+    TO                  = 22,
+    TYPE		= 23,
+    UNTIL               = 24, // Se agrego until      
+    VAR			= 25,
+    WHILE		= 26,
+
     // punctuation...
-    DOT			    = 31,
-    TWO_DOTS        = 32, // TWO_DOTS added.
-    COLON		    = 33,
-    SEMICOLON   = 34,
-    COMMA		    = 35,
-    BECOMES		  = 36,
-    IS			    = 37,
+    DOT			= 27,
+    COLON		= 28,
+    SEMICOLON	        = 29,
+    COMMA		= 30,
+    BECOMES		= 31,
+    IS			= 32,
 
     // brackets...
-    LPAREN		  = 38,
-    RPAREN		  = 39,
-    LBRACKET	  = 40,
-    RBRACKET	  = 41,
-    LCURLY		  = 42,
-    RCURLY		  = 43,
+    LPAREN		= 33,
+    RPAREN		= 34,
+    LBRACKET	        = 35,
+    RBRACKET	        = 36,
+    LCURLY		= 37,
+    RCURLY		= 38,
     // special tokens...
-    EOT			    = 44,
-    ERROR		    = 45;
+    EOT			= 39,
+    ERROR		= 40;
   
   private static String[] tokenTable = new String[] {
     "<int>",
@@ -125,7 +120,7 @@ final class Token extends Object {
     "const",
     "do",
     "else",
-    "elsif", //elsif
+    "elseif", //elseif
     "end",
     "for", //for
     "func",
@@ -133,24 +128,21 @@ final class Token extends Object {
     "in",
     "let",
     "loop", //loop
-    "nothing", //nothiny
+    "nothing", //nothin
     "of",
     "proc",
     "record",
     "then",
     "to",
     "type",
+    "until",
     "var",
     "while",
-    "and", // and
-    "private", // private
-    "rec", // rec
-    "to", // to
     ".",
-    "..", // two_dots
     ":",
     ";",
     ",",
+    "=",
     ":=",
     "~",
     "(",

@@ -12,7 +12,7 @@
  * of the authors.
  */
 
-package SyntacticAnalyzer;
+package Triangle.SyntacticAnalyzer;
 
 class SyntaxError extends Exception {
 

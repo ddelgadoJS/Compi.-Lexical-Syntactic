@@ -32,12 +32,15 @@ import Triangle.AbstractSyntaxTrees.CharacterLiteral;
 import Triangle.AbstractSyntaxTrees.ConstActualParameter;
 import Triangle.AbstractSyntaxTrees.ConstDeclaration;
 import Triangle.AbstractSyntaxTrees.ConstFormalParameter;
+import Triangle.AbstractSyntaxTrees.DoUntilCommand;
+import Triangle.AbstractSyntaxTrees.DoWhileCommand;
 import Triangle.AbstractSyntaxTrees.DotVname;
 import Triangle.AbstractSyntaxTrees.EmptyActualParameterSequence;
 import Triangle.AbstractSyntaxTrees.EmptyCommand;
 import Triangle.AbstractSyntaxTrees.EmptyExpression;
 import Triangle.AbstractSyntaxTrees.EmptyFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.ErrorTypeDenoter;
+import Triangle.AbstractSyntaxTrees.ForCommand;
 import Triangle.AbstractSyntaxTrees.FuncActualParameter;
 import Triangle.AbstractSyntaxTrees.FuncDeclaration;
 import Triangle.AbstractSyntaxTrees.FuncFormalParameter;
@@ -74,6 +77,7 @@ import Triangle.AbstractSyntaxTrees.SubscriptVname;
 import Triangle.AbstractSyntaxTrees.TypeDeclaration;
 import Triangle.AbstractSyntaxTrees.UnaryExpression;
 import Triangle.AbstractSyntaxTrees.UnaryOperatorDeclaration;
+import Triangle.AbstractSyntaxTrees.UntilCommand;
 import Triangle.AbstractSyntaxTrees.VarActualParameter;
 import Triangle.AbstractSyntaxTrees.VarDeclaration;
 import Triangle.AbstractSyntaxTrees.VarFormalParameter;
@@ -100,11 +104,23 @@ public class LayoutVisitor implements Visitor {
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);
    }
+  
+  public Object visitDoUntilCommand(DoUntilCommand ast, Object obj) {
+    return layoutNullary("DoUntilCom.");
+  }
+  
+  public Object visitDoWhileCommand(DoWhileCommand ast, Object obj) {
+    return layoutNullary("DoWhileCom.");
+  }
 
   public Object visitEmptyCommand(EmptyCommand ast, Object obj) {
     return layoutNullary("EmptyCom.");
   }
 
+  public Object visitForCommand(ForCommand ast, Object obj) {
+    return layoutQuaternary("ForCom.", ast.I, ast.E1, ast.E2, ast.C);
+  }
+  
   public Object visitIfCommand(IfCommand ast, Object obj) {
     return layoutTernary("IfCom.", ast.E, ast.C1, ast.C2);
   }
@@ -117,6 +133,10 @@ public class LayoutVisitor implements Visitor {
     return layoutBinary("Seq.Com.", ast.C1, ast.C2);
   }
 
+  public Object visitUntilCommand(UntilCommand ast, Object obj) {
+    return layoutBinary("UntilCom.", ast.E, ast.C);
+  }
+  
   public Object visitWhileCommand(WhileCommand ast, Object obj) {
     return layoutBinary("WhileCom.", ast.E, ast.C);
   }
