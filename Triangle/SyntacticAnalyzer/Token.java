@@ -64,55 +64,56 @@ final class Token extends Object {
     INTLITERAL	= 0,
     CHARLITERAL	= 1,
     IDENTIFIER	= 2,
-    OPERATOR	= 3,
+    OPERATOR	  = 3,
 
     // reserved words - must be in alphabetical order...
-    ARRAY		= 4,
-    BEGIN		= 5,
-    CONST		= 6,
-    DO			= 7,
-    ELSE		= 8,
-    ELSIF              = 9, // se agrega elsif
-    END			= 10,
-    FOR                 = 11, //se agrego for
-    FUNC		= 12,
-    IF			= 13,
-    IN			= 14,
-    LET			= 15,
-    LOOP                = 16, // Se agrego loop
-    NOTHING             = 17, // se agrego nothing
-    OF			= 18,
-    PROC		= 19,
-    RECORD		= 20,
-    THEN		= 21,
-    TO                  = 22,
-    TYPE		= 23,
-    UNTIL               = 24, // Se agrego until      
-    VAR			= 25,
-    WHILE		= 26,
-    AND                 = 27, // AND added.
-    PRIVATE             = 28, // PRIVATE added.
-    REC                 = 29, // AND added.
-    TO                  = 30, // TO added.
-
+    ARRAY		    = 4,
+    BEGIN		    = 5,
+    CONST	 	    = 6,
+    DO		 	    = 7,
+    ELSE		    = 8,
+    ELSIF       = 9,  // ELSIF added.
+    END		  	  = 10,
+    FOR         = 11, // FOR added.
+    FUNC		    = 12,
+    IF		     	= 13,
+    IN		     	= 14,
+    LET		     	= 15,
+    LOOP        = 16, // LOOP added.
+    NOTHING     = 17, // NOTHING added.
+    OF		   	  = 18,
+    PROC	     	= 19,
+    RECORD     	= 20,
+    THEN	     	= 21,
+    TO          = 22,
+    TYPE	     	= 23,
+    UNTIL       = 24, // UNTIL added.      
+    VAR		     	= 25,
+    WHILE	   	  = 26,
+    AND         = 27, // AND added.
+    PRIVATE     = 28, // PRIVATE added.
+    REC         = 29, // AND added.
+    TO          = 30, // TO added.
+  
     // punctuation...
-    DOT			= 31,
-    COLON		= 32,
-    SEMICOLON	        = 33,
-    COMMA		= 34,
-    BECOMES		= 35,
-    IS			= 36,
+    DOT			    = 31,
+    TWO_DOTS        = 32, // TWO_DOTS added.
+    COLON		    = 33,
+    SEMICOLON   = 34,
+    COMMA		    = 35,
+    BECOMES		  = 36,
+    IS			    = 37,
 
     // brackets...
-    LPAREN		= 37,
-    RPAREN		= 38,
-    LBRACKET	        = 39,
-    RBRACKET	        = 40,
-    LCURLY		= 41,
-    RCURLY		= 42,
+    LPAREN		  = 38,
+    RPAREN		  = 39,
+    LBRACKET	  = 40,
+    RBRACKET	  = 41,
+    LCURLY		  = 42,
+    RCURLY		  = 43,
     // special tokens...
-    EOT			= 43,
-    ERROR		= 44;
+    EOT			    = 44,
+    ERROR		    = 45;
   
   private static String[] tokenTable = new String[] {
     "<int>",
@@ -146,6 +147,7 @@ final class Token extends Object {
     "rec", // rec
     "to", // to
     ".",
+    "..", // two_dots
     ":",
     ";",
     ",",

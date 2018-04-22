@@ -25,6 +25,15 @@ public class ArrayTypeDenoter extends TypeDenoter {
     T = tAST;
   }
 
+  // New method.
+  public ArrayTypeDenoter (IntegerLiteral ilAST, IntegerLiteral ilAST2, TypeDenoter tAST,
+                    SourcePosition thePosition) {
+    super (thePosition);
+    IL = ilAST;
+    IL2 = ilAST2;
+    T = tAST;
+  }
+
   public Object visit(Visitor v, Object o) {
     return v.visitArrayTypeDenoter(this, o);
   }

@@ -684,10 +684,20 @@ public class Parser {
       {
         acceptIt();
         Identifier iAST = parseIdentifier();
-        accept(Token.COLON);
-        TypeDenoter tAST = parseTypeDenoter();
-        finish(declarationPos);
-        declarationAST = new VarDeclaration(iAST, tAST, declarationPos);
+
+        if (currentToken.kind == Token.COLON)
+        {
+          acceptIt();
+          TypeDenoter tAST = parseTypeDenoter();
+          finish(declarationPos);
+          declarationAST = new VarDeclaration(iAST, tAST, declarationPos);
+        } else if (currentToken.kind == Token.BECOMES)
+        {
+          acceptIt();
+          Expression eAST = parseExpression();
+          finish(expressionPos);
+          declarationAST = new VarDeclaration(iAST, eAST, expressionPos);
+        }
       }
       break;
 
@@ -699,7 +709,8 @@ public class Parser {
         FormalParameterSequence fpsAST = parseFormalParameterSequence();
         accept(Token.RPAREN);
         accept(Token.IS);
-        Command cAST = parseSingleCommand();
+        Command cAST = parseCommand();
+        accept(Token.END);
         finish(declarationPos);
         declarationAST = new ProcDeclaration(iAST, fpsAST, cAST, declarationPos);
       }
@@ -751,12 +762,18 @@ public class Parser {
     
     switch (currentToken.kind) {
 
-    case
+    case Token.CONST:
+    case Token.VAR:
+    case Token.PROC:
+    case Token.FUNC:
+    case Token.TYPE:
+      declarationAST = parseSingleDeclaration();
+      break;
 
     case Token.REC:
     {
       acceptIt();
-      ProcFuncs iAST = parseProcFuncs(); // What do I change for "Identifier"? // Is the ProcFuncs ok?
+      Identifier iAST = parseProcFuncs(); // What do I change "Identifier" for?
       accept(Token.END);
       finish(declarationPos);
       declarationAST = new ProcFuncs(iAST, eAST, declarationPos); // What do I need to call? ProcFuncs?
@@ -836,19 +853,17 @@ public class Parser {
     return declarationAST;
   }
 
-  // New rule. // UNFINISHED
+  // New rule.
   ProcFuncs parseProcFuncs() throws SyntaxError {
     Declaration declarationAST = null; // in case there's a syntactic error
 
     SourcePosition declarationPos = new SourcePosition();
     start(declarationPos);
     declarationAST = parseCompoundDeclaration();
+
     while (currentToken.kind == Token.AND) {
       acceptIt();
-      Declaration d2AST = parseCompoundDeclaration();
-      finish(declarationPos);
-      declarationAST = new parseCompoundDeclaration(declarationAST, d2AST,
-        declarationPos);
+      parseProcFunc();
     }
     return declarationAST;
   }
@@ -1083,10 +1098,22 @@ public class Parser {
       {
         acceptIt();
         IntegerLiteral ilAST = parseIntegerLiteral();
-        accept(Token.OF);
-        TypeDenoter tAST = parseTypeDenoter();
-        finish(typePos);
-        typeAST = new ArrayTypeDenoter(ilAST, tAST, typePos);
+
+        if (currentToken.kind == Token.OF)
+        {
+          acceptIt();
+          TypeDenoter tAST = parseTypeDenoter();
+          finish(typePos);
+          typeAST = new ArrayTypeDenoter(ilAST, tAST, typePos);
+        } else if (currentToken.kind == Token.TWO_DOTS)
+        {
+          acceptIt();
+          IntegerLiteral ilAST2 = parseIntegerLiteral();
+          accept(Token.OF);
+          TypeDenoter tAST = parseTypeDenoter();
+          finish(declarationPos);
+          typeAST = new ArrayTypeDenoter(ilAST, ilAST2, tAST, typePos);
+        }
       }
       break;
 
