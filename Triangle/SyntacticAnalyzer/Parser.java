@@ -642,15 +642,18 @@ public class Parser {
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+  // Updated Declaration
+  // Old: Declaration ::= single-Declaration (; single-Declaration)*
+  // New: Declaration ::= compound-Declaration (";" compound-Declaration)*
   Declaration parseDeclaration() throws SyntaxError {
     Declaration declarationAST = null; // in case there's a syntactic error
 
     SourcePosition declarationPos = new SourcePosition();
     start(declarationPos);
-    declarationAST = parseSingleDeclaration();
+    declarationAST = parseCompoundDeclaration();
     while (currentToken.kind == Token.SEMICOLON) {
       acceptIt();
-      Declaration d2AST = parseSingleDeclaration();
+      Declaration d2AST = parseCompoundDeclaration();
       finish(declarationPos);
       declarationAST = new SequentialDeclaration(declarationAST, d2AST,
         declarationPos);
@@ -735,6 +738,117 @@ public class Parser {
         currentToken.spelling);
       break;
 
+    }
+    return declarationAST;
+  }
+
+  // New rule. // UNFINISHED
+  Declaration parseCompoundDeclaration() throws SyntaxError {
+    Declaration declarationAST = null; // in case there's a syntactic error
+
+    SourcePosition declarationPos = new SourcePosition();
+    start(declarationPos);
+    
+    switch (currentToken.kind) {
+
+    case
+
+    case Token.REC:
+    {
+      acceptIt();
+      ProcFuncs iAST = parseProcFuncs(); // What do I change for "Identifier"? // Is the ProcFuncs ok?
+      accept(Token.END);
+      finish(declarationPos);
+      declarationAST = new ProcFuncs(iAST, eAST, declarationPos); // What do I need to call? ProcFuncs?
+    }
+    break;
+
+    case Token.PRIVATE:
+      {
+        acceptIt();
+        Declaration dAST1 = parseDeclaration();
+        accept(Token.IN);
+        Declaration dAST2 = parseDeclaration();
+        accept(Token.END);
+        finish(declarationPos);
+        declarationAST = new ConstDeclaration(dAST1, dAST2, declarationPos);
+      }
+      break;
+    
+    default:
+      syntacticError("\"%\" cannot start a declaration",
+        currentToken.spelling);
+      break;
+
+    }
+    return declarationAST;
+  }
+
+  // New rule.
+  ProcFunc parseProcFunc() throws SyntaxError {
+    Declaration declarationAST = null; // in case there's a syntactic error
+
+    SourcePosition declarationPos = new SourcePosition();
+    start(declarationPos);
+    
+    switch (currentToken.kind) {
+
+    case Token.PROC:
+    {
+      acceptIt();
+      // accept(Token.IDENTIFIER); // Do I have to accept it?
+      Identifier iAST = parseIdentifier();
+      accept(Token.LPAREN);
+      FormalParameterSequence fpsAST = parseFormalParameterSequence();
+      accept(Token.RPAREN);
+      accept(Token.IS);
+      Command cAST = parseSingleCommand();
+      accept(Token.END);
+      finish(declarationPos);
+      declarationAST = new ProcDeclaration(iAST, fpsAST, cAST, declarationPos);
+    }
+    break;
+
+    case Token.FUNC:
+    {
+      acceptIt();
+      // accept(Token.IDENTIFIER); // Do I have to accept it?
+      Identifier iAST = parseIdentifier();
+      accept(Token.LPAREN);
+      FormalParameterSequence fpsAST = parseFormalParameterSequence();
+      accept(Token.RPAREN);
+      accept(Token.COLON);
+      TypeDenoter tAST = parseTypeDenoter();
+      accept(Token.IS);
+      Expression eAST = parseExpression();
+      finish(declarationPos);
+      declarationAST = new FuncDeclaration(iAST, fpsAST, tAST, eAST,
+        declarationPos);
+    }
+    break;
+
+    default:
+      syntacticError("\"%\" cannot start a declaration",
+        currentToken.spelling);
+      break;
+
+    }
+    return declarationAST;
+  }
+
+  // New rule. // UNFINISHED
+  ProcFuncs parseProcFuncs() throws SyntaxError {
+    Declaration declarationAST = null; // in case there's a syntactic error
+
+    SourcePosition declarationPos = new SourcePosition();
+    start(declarationPos);
+    declarationAST = parseCompoundDeclaration();
+    while (currentToken.kind == Token.AND) {
+      acceptIt();
+      Declaration d2AST = parseCompoundDeclaration();
+      finish(declarationPos);
+      declarationAST = new parseCompoundDeclaration(declarationAST, d2AST,
+        declarationPos);
     }
     return declarationAST;
   }
