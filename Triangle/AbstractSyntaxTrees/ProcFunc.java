@@ -1,5 +1,5 @@
 /*
- * @(#)ConstDeclaration.java                        2.1 2003/10/07
+ * @(#)FormalParameterSequence.java                2.1 2003/10/07
  *
  * Copyright (C) 1999, 2003 D.A. Watt and D.F. Brown
  * Dept. of Computing Science, University of Glasgow, Glasgow G12 8QQ Scotland
@@ -16,20 +16,11 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class ConstDeclaration extends Declaration {
+public abstract class ProcFunc extends Declaration {
 
-  public ConstDeclaration (Identifier iAST, Expression eAST,
-                    SourcePosition thePosition) {
+  public ProcFunc (SourcePosition thePosition) {
     super (thePosition);
-    I = iAST;
-    E = eAST;
   }
 
-  public Identifier I;
-  public Expression E;
-
-    @Override
-    public Object visit(Visitor v, Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  public abstract boolean equals(Object fpsAST);
 }

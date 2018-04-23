@@ -58,10 +58,14 @@ import Triangle.AbstractSyntaxTrees.MultipleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.MultipleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.MultipleRecordAggregate;
 import Triangle.AbstractSyntaxTrees.Operator;
+import Triangle.AbstractSyntaxTrees.PrivateDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcActualParameter;
 import Triangle.AbstractSyntaxTrees.ProcDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcFormalParameter;
+import Triangle.AbstractSyntaxTrees.ProcFunc;
+import Triangle.AbstractSyntaxTrees.ProcFuncs;
 import Triangle.AbstractSyntaxTrees.Program;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.RecordAggregate;
 import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
@@ -700,8 +704,8 @@ public class Parser {
         {
           acceptIt();
           Expression eAST = parseExpression();
-          finish(expressionPos);
-          declarationAST = new VarDeclaration(iAST, eAST, expressionPos);
+          finish(declarationPos);
+          declarationAST = new VarDeclaration(iAST, eAST, declarationPos);
         }
       }
       break;
@@ -855,7 +859,7 @@ public class Parser {
       break;
 
     }
-    return declarationAST;
+    return (ProcFunc) declarationAST;
   }
 
   // New rule.
@@ -870,7 +874,7 @@ public class Parser {
       acceptIt();
       parseProcFunc();
     }
-    return declarationAST;
+    return (ProcFuncs) declarationAST;
   }
 
 ///////////////////////////////////////////////////////////////////////////////

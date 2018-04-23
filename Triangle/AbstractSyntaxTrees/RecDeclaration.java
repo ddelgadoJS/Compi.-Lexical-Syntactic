@@ -11,4 +11,9 @@ public class RecDeclaration extends Declaration {
   }
 
   public Declaration D;
+
+    @Override
+    public Object visit(Visitor v, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

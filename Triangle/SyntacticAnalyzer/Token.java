@@ -85,35 +85,34 @@ final class Token extends Object {
     PROC        = 18,
     RECORD      = 19,
     THEN        = 20,
-    TO          = 21,
-    TYPE        = 22,
-    UNTIL       = 23, // UNTIL added.      
-    VAR         = 24,
-    WHILE       = 25,
-    AND         = 26, // AND added.
-    PRIVATE     = 27, // PRIVATE added.
-    REC         = 28, // AND added.
-    TO          = 39, // TO added.
+    TYPE        = 21,
+    UNTIL       = 22, // UNTIL added.      
+    VAR         = 23,
+    WHILE       = 24,
+    AND         = 25, // AND added.
+    PRIVATE     = 26, // PRIVATE added.
+    REC         = 27, // AND added.
+    TO          = 28, // TO added.
   
     // punctuation...
-    DOT         = 30,
-    TWO_DOTS    = 31, // TWO_DOTS added.
-    COLON       = 32,
-    SEMICOLON   = 33,
-    COMMA       = 34,
-    BECOMES     = 35,
-    IS          = 36,
+    DOT         = 29,
+    TWO_DOTS    = 30, // TWO_DOTS added.
+    COLON       = 31,
+    SEMICOLON   = 32,
+    COMMA       = 33,
+    BECOMES     = 34,
+    IS          = 35,
 
     // brackets...
-    LPAREN      = 37,
-    RPAREN      = 38,
-    LBRACKET    = 39,
-    RBRACKET    = 40,
-    LCURLY      = 41,
-    RCURLY      = 42,
+    LPAREN      = 36,
+    RPAREN      = 37,
+    LBRACKET    = 38,
+    RBRACKET    = 39,
+    LCURLY      = 40,
+    RCURLY      = 41,
     // special tokens...
-    EOT         = 43,
-    ERROR       = 44;
+    EOT         = 42,
+    ERROR       = 43;
   
   private static String[] tokenTable = new String[] {
     "<int>",
@@ -121,7 +120,7 @@ final class Token extends Object {
     "<identifier>",
     "<operator>",
     "array",
-    //"begin", // begin deleted
+    //"begin",  // begin deleted
     "const",
     "do",
     "else",
@@ -163,7 +162,7 @@ final class Token extends Object {
     "<error>"
   };
 
-  private final static int	firstReservedWord = Token.ARRAY,
-  				lastReservedWord  = Token.WHILE;
+  private final static int  firstReservedWord = Token.ARRAY,
+                lastReservedWord  = Token.WHILE;
 
 }
