@@ -758,7 +758,7 @@ public class Parser {
     return declarationAST;
   }
 
-  // New rule. // UNFINISHED
+  // New rule.
   Declaration parseCompoundDeclaration() throws SyntaxError {
     Declaration declarationAST = null; // in case there's a syntactic error
 
@@ -778,10 +778,10 @@ public class Parser {
     case Token.REC:
     {
       acceptIt();
-      Identifier iAST = parseProcFuncs(); // What do I change "Identifier" for? Do I need to change identifier?
+      Declaration dAST = parseProcFuncs();
       accept(Token.END);
       finish(declarationPos);
-      declarationAST = new ProcFuncs(iAST, eAST, declarationPos); // What do I need to call? ProcFuncs?
+      declarationAST = new RecDeclaration(dAST, declarationPos);
     }
     break;
 
@@ -793,7 +793,7 @@ public class Parser {
         Declaration dAST2 = parseDeclaration();
         accept(Token.END);
         finish(declarationPos);
-        declarationAST = new ConstDeclaration(dAST1, dAST2, declarationPos);
+        declarationAST = new PrivateDeclaration(dAST1, dAST2, declarationPos);
       }
       break;
     
