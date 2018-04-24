@@ -18,9 +18,13 @@ import Triangle.SyntacticAnalyzer.SourcePosition;
 
 public abstract class ProcFuncs extends Declaration {
 
-  public ProcFuncs (SourcePosition thePosition) {
+  public ProcFuncs (Declaration declarationAST, Declaration dAST2, SourcePosition thePosition) {
     super (thePosition);
+    D1 = declarationAST;
+    D2 = dAST2;
   }
+
+  public Declaration D1, D2;
 
   public abstract boolean equals(Object fpsAST);
 }
