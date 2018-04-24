@@ -16,7 +16,7 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public abstract class ProcFuncs extends Declaration {
+public class ProcFuncs extends Declaration {
 
   public ProcFuncs (Declaration declarationAST, Declaration dAST2, SourcePosition thePosition) {
     super (thePosition);
@@ -26,5 +26,9 @@ public abstract class ProcFuncs extends Declaration {
 
   public Declaration D1, D2;
 
-  public abstract boolean equals(Object fpsAST);
+    @Override
+    public Object visit(Visitor v, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

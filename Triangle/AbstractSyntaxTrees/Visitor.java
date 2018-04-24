@@ -22,6 +22,7 @@ public interface Visitor {
   public abstract Object visitDoUntilCommand(DoUntilCommand ast, Object o);
   public abstract Object visitDoWhileCommand(DoWhileCommand ast, Object o);
   public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
+  public abstract Object visitElsIfCommand(ElsIfCommand ast, Object o);
   public abstract Object visitForCommand(ForCommand ast, Object o);
   public abstract Object visitIfCommand(IfCommand ast, Object o);
   public abstract Object visitLetCommand(LetCommand ast, Object o);
@@ -52,6 +53,7 @@ public interface Visitor {
   public abstract Object visitTypeDeclaration(TypeDeclaration ast, Object o);
   public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);
   public abstract Object visitVarDeclaration(VarDeclaration ast, Object o);
+  public abstract Object visitVarInitialized(VarInitialized ast, Object o);
 
   // Array Aggregates
   public abstract Object visitMultipleArrayAggregate(MultipleArrayAggregate ast, Object o);
@@ -84,6 +86,7 @@ public interface Visitor {
   // Type Denoters
   public abstract Object visitAnyTypeDenoter(AnyTypeDenoter ast, Object o);
   public abstract Object visitArrayTypeDenoter(ArrayTypeDenoter ast, Object o);
+  public abstract Object visitArrayTypeDenoterStatic(ArrayTypeDenoterStatic ast, Object o);
   public abstract Object visitBoolTypeDenoter(BoolTypeDenoter ast, Object o);
   public abstract Object visitCharTypeDenoter(CharTypeDenoter ast, Object o);
   public abstract Object visitErrorTypeDenoter(ErrorTypeDenoter ast, Object o);

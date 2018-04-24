@@ -35,6 +35,7 @@ public class Parser {
   // If not, reports a syntactic error.
 
   void accept(int tokenExpected) throws SyntaxError {
+    System.out.println(currentToken.spelling);
     if (currentToken.kind == tokenExpected) {
       previousTokenPosition = currentToken.position;
       currentToken = lexicalAnalyser.scan();
@@ -685,6 +686,7 @@ public class Parser {
       {
         acceptIt();
         Identifier iAST = parseIdentifier();
+        accept(Token.COLON);
         accept(Token.LPAREN);
         FormalParameterSequence fpsAST = parseFormalParameterSequence();
         accept(Token.RPAREN);
@@ -700,6 +702,7 @@ public class Parser {
       {
         acceptIt();
         Identifier iAST = parseIdentifier();
+        accept(Token.COLON);
         accept(Token.LPAREN);
         FormalParameterSequence fpsAST = parseFormalParameterSequence();
         accept(Token.RPAREN);
@@ -795,6 +798,7 @@ public class Parser {
       acceptIt();
       // accept(Token.IDENTIFIER); // Do I have to accept it?
       Identifier iAST = parseIdentifier();
+      accept(Token.COLON);
       accept(Token.LPAREN);
       FormalParameterSequence fpsAST = parseFormalParameterSequence();
       accept(Token.RPAREN);
@@ -811,6 +815,7 @@ public class Parser {
       acceptIt();
       // accept(Token.IDENTIFIER); // Do I have to accept it?
       Identifier iAST = parseIdentifier();
+      accept(Token.COLON);
       accept(Token.LPAREN);
       FormalParameterSequence fpsAST = parseFormalParameterSequence();
       accept(Token.RPAREN);
@@ -845,8 +850,8 @@ public class Parser {
     do {
       accept(Token.AND);
       Declaration dAST2 = parseProcFunc();
-      finish(position);
-      declarationAST = new ProcFuncs(declarationAST, dAST2, position);
+      finish(declarationPos);
+      declarationAST = new ProcFuncs(declarationAST, dAST2, declarationPos);
     } while (currentToken.kind == Token.AND);
 
     return (ProcFuncs) declarationAST;

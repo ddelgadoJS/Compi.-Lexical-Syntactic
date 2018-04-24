@@ -78,11 +78,6 @@ public class LayoutVisitor implements Visitor {
   }
 
   // New
-  public Object visitUntilCommand(UntilCommand ast, Object obj){
-    return layoutBinary("UntilCommand",ast.E,ast.C);
-  }
-
-  // New
   public Object visitDoWhileCommand(DoWhileCommand ast, Object o){
     return layoutBinary("DoWhileCommand",ast.C,ast.E);
   }
@@ -93,8 +88,8 @@ public class LayoutVisitor implements Visitor {
   }
 
   // New
-  public Object visitElsifCommand(ElsifCommand ast, Object obj) {
-    return layoutTernary("ElsifCommand", ast.E, ast.C1, ast.C2);
+  public Object visitElsIfCommand(ElsIfCommand ast, Object o) {
+      return layoutTernary("ElsIfCommand",ast.E1,ast.C,ast.C2);
   }
 
   // Expressions
@@ -192,7 +187,7 @@ public class LayoutVisitor implements Visitor {
 
   // New
   public Object visitPrivateDeclaration(PrivateDeclaration ast, Object o) {
-    return layoutBinary("PrivateDeclaration", ast.D1, ast.D2);
+    return layoutBinary("PrivateDeclaration", ast.D, ast.D2);
   }
 
   // New
@@ -290,6 +285,10 @@ public class LayoutVisitor implements Visitor {
 
   public Object visitArrayTypeDenoter(ArrayTypeDenoter ast, Object obj) {
     return layoutBinary("ArrayTypeD.", ast.IL, ast.T);
+  }
+  
+  public Object visitArrayTypeDenoterStatic(ArrayTypeDenoterStatic ast, Object o) {
+    return layoutTernary("ArrayTypeDS.", ast.IL, ast.IL2, ast.T);
   }
 
   public Object visitBoolTypeDenoter(BoolTypeDenoter ast, Object obj) {

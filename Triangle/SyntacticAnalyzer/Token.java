@@ -67,32 +67,32 @@ final class Token extends Object {
     OPERATOR    = 3,
 
     // reserved words - must be in alphabetical order...
-    ARRAY       = 4,
+    AND         = 4,
+    ARRAY       = 5,
     //BEGIN       = 5,// begin deleted, index shifted
-    CONST       = 5,
-    DO          = 6,
-    ELSE        = 7,
-    ELSIF       = 8,  // ELSIF added.
-    END         = 9,
-    FOR         = 10, // FOR added.
-    FUNC        = 11,
-    IF          = 12,
-    IN          = 13,
-    LET         = 14,
-    LOOP        = 15, // LOOP added.
-    NOTHING     = 16, // NOTHING added.
-    OF          = 17,
-    PROC        = 18,
-    RECORD      = 19,
-    THEN        = 20,
-    TYPE        = 21,
-    UNTIL       = 22, // UNTIL added.      
-    VAR         = 23,
-    WHILE       = 24,
-    AND         = 25, // AND added.
-    PRIVATE     = 26, // PRIVATE added.
-    REC         = 27, // AND added.
-    TO          = 28, // TO added.
+    CONST       = 6,
+    DO          = 7,
+    ELSE        = 8,
+    ELSIF       = 9,  // ELSIF added.
+    END         = 10,
+    FOR         = 11, // FOR added.
+    FUNC        = 12,
+    IF          = 13,
+    IN          = 14,
+    LET         = 15,
+    LOOP        = 16, // LOOP added.
+    NOTHING     = 17, // NOTHING added.
+    OF          = 18,
+    PRIVATE     = 19,
+    PROC        = 20,
+    REC         = 21,
+    RECORD      = 22,
+    THEN        = 23,
+    TO          = 24,
+    TYPE        = 25,
+    UNTIL       = 26, // UNTIL added.      
+    VAR         = 27,
+    WHILE       = 28,
   
     // punctuation...
     DOT         = 29,
@@ -119,6 +119,7 @@ final class Token extends Object {
     "<char>",
     "<identifier>",
     "<operator>",
+    "and",
     "array",
     //"begin",  // begin deleted
     "const",
@@ -134,23 +135,22 @@ final class Token extends Object {
     "loop", //loop
     "nothing", //nothiny
     "of",
+    "private",
     "proc",
+    "rec",
     "record",
     "then",
     "to",
     "type",
+    "until",
     "var",
     "while",
-    "and", // and
-    "private", // private
-    "rec", // rec
-    "to", // to
     ".",
-    "..", // two_dots
+    "..", // two_dots 31
     ":",
     ";",
     ",",
-    ":=",
+    "=",
     "~",
     "(",
     ")",

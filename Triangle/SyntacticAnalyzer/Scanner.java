@@ -134,7 +134,7 @@ public final class Scanner {
       if (currentChar == '.') {
         takeIt();
         return Token.TWO_DOTS;
-      } else Sreturn Token.DOT;
+      } else return Token.DOT;
 
     case ':':
       takeIt();
