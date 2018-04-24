@@ -1,0 +1,14 @@
+let
+ var i: Integer;
+ var j: Integer;
+ var k: Integer;
+ var num: Integer;
+ var a: array 5 .. 9 of Integer;
+ proc t: (x: Integer, y: Integer)~ x:=x+y; x:=x-y end
+in
+ getint (var num); ! Number of iterations.
+ i:= 1;
+ j:= 2;
+ loop for j := 1 to 5 do x:= 2 end;
+ if x = 2 then x:= 3 elsif x = 5 then x:=1 elsif x = 4 then x:=1 else x:= 4 end;
+end 
