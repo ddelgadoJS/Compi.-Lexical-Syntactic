@@ -209,7 +209,7 @@ public final class Scanner {
 
     kind = scanToken();
 
-    pos.finish = sourceFile.getCurrentLine();
+    pos.finish = sourceFile.getCurrentPosition();
     tok = new Token(kind, currentSpelling.toString(), pos);
     if (debug)
       System.out.println(tok);

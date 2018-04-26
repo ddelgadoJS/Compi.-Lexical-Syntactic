@@ -1,14 +1,23 @@
 let
- var i: Integer;
+ const i ~ 2;
  var j: Integer;
  var k: Integer;
  var num: Integer;
  var a: array 5 .. 9 of Integer;
- proc t: (x: Integer, y: Integer)~ x:=x+y; x:=x-y end
+ func t (x: Integer, y: Integer): Integer ~ 7;
+ type Date ~ array 1..6 of Integer;
+ var Identifier := 4+6;
+ rec func t (x: Integer, y: Integer): Integer ~ 7  
+ and proc res(x: Integer, y: Integer) ~ x:=x+y end;
+ private
+  var j: Integer
+  in
+  var x: Integer
+  end
 in
  getint (var num); ! Number of iterations.
  i:= 1;
  j:= 2;
- loop for j := 1 to 5 do x:= 2 end;
+ let var i: Integer in i:=0 end;
  if x = 2 then x:= 3 elsif x = 5 then x:=1 elsif x = 4 then x:=1 else x:= 4 end;
 end 

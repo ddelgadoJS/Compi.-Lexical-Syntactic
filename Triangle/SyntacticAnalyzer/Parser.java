@@ -35,7 +35,6 @@ public class Parser {
   // If not, reports a syntactic error.
 
   void accept(int tokenExpected) throws SyntaxError {
-    System.out.println(currentToken.spelling);
     if (currentToken.kind == tokenExpected) {
       previousTokenPosition = currentToken.position;
       currentToken = lexicalAnalyser.scan();
@@ -360,16 +359,21 @@ public class Parser {
       }
       break;
     */
+    case Token.NOTHING:
+    {
+        acceptIt();
+        finish(commandPos);
+        commandAST = new NothingCommand(commandPos);
+    }
 
     case Token.SEMICOLON:
     case Token.END:
     case Token.ELSE:
     case Token.IN:
     case Token.EOT:
-    case Token.NOTHING:
-
+     
       finish(commandPos);
-      commandAST = new EmptyCommand(commandPos);
+      commandAST = new NothingCommand(commandPos);
       break;
 
     default:
@@ -686,7 +690,6 @@ public class Parser {
       {
         acceptIt();
         Identifier iAST = parseIdentifier();
-        accept(Token.COLON);
         accept(Token.LPAREN);
         FormalParameterSequence fpsAST = parseFormalParameterSequence();
         accept(Token.RPAREN);
@@ -702,7 +705,6 @@ public class Parser {
       {
         acceptIt();
         Identifier iAST = parseIdentifier();
-        accept(Token.COLON);
         accept(Token.LPAREN);
         FormalParameterSequence fpsAST = parseFormalParameterSequence();
         accept(Token.RPAREN);
@@ -785,7 +787,7 @@ public class Parser {
   }
 
   // New rule.
-  ProcFunc parseProcFunc() throws SyntaxError {
+  Declaration parseProcFunc() throws SyntaxError {
     Declaration declarationAST = null; // in case there's a syntactic error
 
     SourcePosition declarationPos = new SourcePosition();
@@ -798,13 +800,11 @@ public class Parser {
       acceptIt();
       // accept(Token.IDENTIFIER); // Do I have to accept it?
       Identifier iAST = parseIdentifier();
-      accept(Token.COLON);
       accept(Token.LPAREN);
       FormalParameterSequence fpsAST = parseFormalParameterSequence();
       accept(Token.RPAREN);
       accept(Token.IS);
-      Command cAST = parseSingleCommand();
-      accept(Token.END);
+      Command cAST = parseSingleCommand();;
       finish(declarationPos);
       declarationAST = new ProcDeclaration(iAST, fpsAST, cAST, declarationPos);
     }
@@ -815,7 +815,6 @@ public class Parser {
       acceptIt();
       // accept(Token.IDENTIFIER); // Do I have to accept it?
       Identifier iAST = parseIdentifier();
-      accept(Token.COLON);
       accept(Token.LPAREN);
       FormalParameterSequence fpsAST = parseFormalParameterSequence();
       accept(Token.RPAREN);
@@ -835,7 +834,7 @@ public class Parser {
       break;
 
     }
-    return (ProcFunc) declarationAST;
+    return declarationAST;
   }
 
   // New rule.
@@ -854,7 +853,7 @@ public class Parser {
       declarationAST = new ProcFuncs(declarationAST, dAST2, declarationPos);
     } while (currentToken.kind == Token.AND);
 
-    return (ProcFuncs) declarationAST;
+    return declarationAST;
   }
 
 ///////////////////////////////////////////////////////////////////////////////

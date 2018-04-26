@@ -133,7 +133,7 @@ final class Token extends Object {
     "in",
     "let",
     "loop", //loop
-    "nothing", //nothiny
+    "nothing", //nothing
     "of",
     "private",
     "proc",
@@ -162,7 +162,7 @@ final class Token extends Object {
     "<error>"
   };
 
-  private final static int  firstReservedWord = Token.ARRAY,
+  private final static int  firstReservedWord = Token.AND,
                 lastReservedWord  = Token.WHILE;
 
 }

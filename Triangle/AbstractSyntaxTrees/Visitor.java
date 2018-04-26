@@ -21,7 +21,7 @@ public interface Visitor {
   public abstract Object visitCallCommand(CallCommand ast, Object o);
   public abstract Object visitDoUntilCommand(DoUntilCommand ast, Object o);
   public abstract Object visitDoWhileCommand(DoWhileCommand ast, Object o);
-  public abstract Object visitEmptyCommand(EmptyCommand ast, Object o);
+  public abstract Object visitNothingCommand(NothingCommand ast, Object o);
   public abstract Object visitElsIfCommand(ElsIfCommand ast, Object o);
   public abstract Object visitForCommand(ForCommand ast, Object o);
   public abstract Object visitIfCommand(IfCommand ast, Object o);
@@ -48,7 +48,10 @@ public interface Visitor {
   public abstract Object visitBinaryOperatorDeclaration(BinaryOperatorDeclaration ast, Object o);
   public abstract Object visitConstDeclaration(ConstDeclaration ast, Object o);
   public abstract Object visitFuncDeclaration(FuncDeclaration ast, Object o);
+  public abstract Object visitPrivateDeclaration(PrivateDeclaration ast, Object o);
   public abstract Object visitProcDeclaration(ProcDeclaration ast, Object o);
+  public abstract Object visitProcFuncs(ProcFuncs ast, Object o);
+  public abstract Object visitRecDeclaration(RecDeclaration ast, Object o);
   public abstract Object visitSequentialDeclaration(SequentialDeclaration ast, Object o);
   public abstract Object visitTypeDeclaration(TypeDeclaration ast, Object o);
   public abstract Object visitUnaryOperatorDeclaration(UnaryOperatorDeclaration ast, Object o);

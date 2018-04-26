@@ -37,8 +37,7 @@ public class LayoutVisitor implements Visitor {
   public Object visitCallCommand(CallCommand ast, Object obj) {
     return layoutBinary("CallCom.", ast.I, ast.APS);
    }
-  
-  /*
+ 
   public Object visitDoUntilCommand(DoUntilCommand ast, Object obj) {
     return layoutNullary("DoUntilCom.");
   }
@@ -46,10 +45,10 @@ public class LayoutVisitor implements Visitor {
   public Object visitDoWhileCommand(DoWhileCommand ast, Object obj) {
     return layoutNullary("DoWhileCom.");
   }
-  */
+  
 
-  public Object visitEmptyCommand(EmptyCommand ast, Object obj) {
-    return layoutNullary("EmptyCom.");
+  public Object visitNothingCommand(NothingCommand ast, Object obj) {
+    return layoutNullary("NothingCom.");
   }
 
   public Object visitForCommand(ForCommand ast, Object obj) {
@@ -75,16 +74,6 @@ public class LayoutVisitor implements Visitor {
   // New
   public Object visitWhileCommand(WhileCommand ast, Object obj) {
     return layoutBinary("WhileCom.", ast.E, ast.C);
-  }
-
-  // New
-  public Object visitDoWhileCommand(DoWhileCommand ast, Object o){
-    return layoutBinary("DoWhileCommand",ast.C,ast.E);
-  }
-
-  // New
-  public Object visitDoUntilCommand(DoUntilCommand ast, Object o){
-    return layoutBinary("DoUntilCommand",ast.C,ast.E);
   }
 
   // New
@@ -163,6 +152,7 @@ public class LayoutVisitor implements Visitor {
   public Object visitProcDeclaration(ProcDeclaration ast, Object obj) {
     return layoutTernary("ProcDecl.", ast.I, ast.FPS, ast.C);
   }
+  
 
   public Object visitSequentialDeclaration(SequentialDeclaration ast, Object obj) {
     return layoutBinary("Seq.Decl.", ast.D1, ast.D2);

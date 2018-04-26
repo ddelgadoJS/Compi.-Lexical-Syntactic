@@ -51,7 +51,7 @@ public final class Checker implements Visitor {
     return null;
   }
 
-  public Object visitEmptyCommand(EmptyCommand ast, Object o) {
+  public Object visitNothingCommand(NothingCommand ast, Object o) {
     return null;
   }
 
@@ -765,7 +765,7 @@ public final class Checker implements Visitor {
     ProcDeclaration binding;
 
     binding = new ProcDeclaration(new Identifier(id, dummyPos), fps,
-                                  new EmptyCommand(dummyPos), dummyPos);
+                                  new NothingCommand(dummyPos), dummyPos);
     idTable.enter(id, binding);
     return binding;
   }
@@ -903,6 +903,21 @@ public final class Checker implements Visitor {
 
     @Override
     public Object visitArrayTypeDenoterStatic(ArrayTypeDenoterStatic ast, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object visitPrivateDeclaration(PrivateDeclaration ast, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object visitProcFuncs(ProcFuncs ast, Object o) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Object visitRecDeclaration(RecDeclaration ast, Object o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

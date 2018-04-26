@@ -26,7 +26,6 @@ import Triangle.AbstractSyntaxTrees.DoWhileCommand;
 import Triangle.AbstractSyntaxTrees.DotVname;
 import Triangle.AbstractSyntaxTrees.ElsIfCommand;
 import Triangle.AbstractSyntaxTrees.EmptyActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.EmptyCommand;
 import Triangle.AbstractSyntaxTrees.EmptyExpression;
 import Triangle.AbstractSyntaxTrees.EmptyFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.ErrorTypeDenoter;
@@ -47,11 +46,15 @@ import Triangle.AbstractSyntaxTrees.MultipleArrayAggregate;
 import Triangle.AbstractSyntaxTrees.MultipleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.MultipleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.MultipleRecordAggregate;
+import Triangle.AbstractSyntaxTrees.NothingCommand;
 import Triangle.AbstractSyntaxTrees.Operator;
+import Triangle.AbstractSyntaxTrees.PrivateDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcActualParameter;
 import Triangle.AbstractSyntaxTrees.ProcDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcFormalParameter;
+import Triangle.AbstractSyntaxTrees.ProcFuncs;
 import Triangle.AbstractSyntaxTrees.Program;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
@@ -115,8 +118,8 @@ public class TreeVisitor implements Visitor {
         return(createBinary("Do While Command", ast.C, ast.E));
     }
     
-    public Object visitEmptyCommand(EmptyCommand ast, Object o) {
-        return(createNullary("Empty Command"));
+    public Object visitNothingCommand(NothingCommand ast, Object o) {
+        return(createNullary("Nothing Command"));
     }
     
     public Object visitForCommand(ForCommand ast, Object obj) {
@@ -205,8 +208,20 @@ public class TreeVisitor implements Visitor {
         return(createQuaternary("Function Declaration", ast.I, ast.FPS, ast.T, ast.E));
     }
     
+    public Object visitPrivateDeclaration(PrivateDeclaration ast, Object obj) {
+        return(createBinary("Private Declaration", ast.D, ast.D2));        
+    }
+    
     public Object visitProcDeclaration(ProcDeclaration ast, Object obj) {
         return(createTernary("Procedure Declaration", ast.I, ast.FPS, ast.C));        
+    }
+    
+    public Object visitProcFuncs(ProcFuncs ast, Object obj) {
+        return(createBinary("ProcFuncs Declaration", ast.D1, ast.D2));        
+    }
+    
+    public Object visitRecDeclaration(RecDeclaration ast, Object obj) {
+        return(createUnary("Rec Declaration", ast.D));
     }
     
     public Object visitSequentialDeclaration(SequentialDeclaration ast, Object obj) {

@@ -26,7 +26,6 @@ import Triangle.AbstractSyntaxTrees.DoWhileCommand;
 import Triangle.AbstractSyntaxTrees.DotVname;
 import Triangle.AbstractSyntaxTrees.ElsIfCommand;
 import Triangle.AbstractSyntaxTrees.EmptyActualParameterSequence;
-import Triangle.AbstractSyntaxTrees.EmptyCommand;
 import Triangle.AbstractSyntaxTrees.EmptyExpression;
 import Triangle.AbstractSyntaxTrees.EmptyFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.ErrorTypeDenoter;
@@ -47,11 +46,15 @@ import Triangle.AbstractSyntaxTrees.MultipleArrayAggregate;
 import Triangle.AbstractSyntaxTrees.MultipleFieldTypeDenoter;
 import Triangle.AbstractSyntaxTrees.MultipleFormalParameterSequence;
 import Triangle.AbstractSyntaxTrees.MultipleRecordAggregate;
+import Triangle.AbstractSyntaxTrees.NothingCommand;
 import Triangle.AbstractSyntaxTrees.Operator;
+import Triangle.AbstractSyntaxTrees.PrivateDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcActualParameter;
 import Triangle.AbstractSyntaxTrees.ProcDeclaration;
 import Triangle.AbstractSyntaxTrees.ProcFormalParameter;
+import Triangle.AbstractSyntaxTrees.ProcFuncs;
 import Triangle.AbstractSyntaxTrees.Program;
+import Triangle.AbstractSyntaxTrees.RecDeclaration;
 import Triangle.AbstractSyntaxTrees.RecordExpression;
 import Triangle.AbstractSyntaxTrees.RecordTypeDenoter;
 import Triangle.AbstractSyntaxTrees.SequentialCommand;
@@ -137,7 +140,7 @@ public class TableVisitor implements Visitor {
       return (null);
   }
   
-  public Object visitEmptyCommand(EmptyCommand ast, Object o) { 
+  public Object visitNothingCommand(NothingCommand ast, Object o) { 
       return(null);
   }
   
@@ -308,6 +311,14 @@ public class TableVisitor implements Visitor {
       return(null);
   }
   
+  public Object visitPrivateDeclaration(PrivateDeclaration ast, Object o) {    
+      ast.D.visit(this, null);            
+      ast.D2.visit(this, null);
+      
+      return(null);
+  }
+  
+  
   public Object visitProcDeclaration(ProcDeclaration ast, Object o) { 
       try {
       addIdentifier(ast.I.spelling, "KnownRoutine", 
@@ -322,6 +333,20 @@ public class TableVisitor implements Visitor {
             
       return(null);
   }
+  
+  public Object visitProcFuncs(ProcFuncs ast, Object o) { 
+      ast.D1.visit(this, null);
+      ast.D2.visit(this, null);
+            
+      return(null);
+  }
+  
+  public Object visitRecDeclaration(RecDeclaration ast, Object o) { 
+      ast.D.visit(this, null);
+            
+      return(null);
+  }
+  
   
   public Object visitSequentialDeclaration(SequentialDeclaration ast, Object o) {   
       ast.D1.visit(this, null);

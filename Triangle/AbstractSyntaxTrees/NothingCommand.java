@@ -1,5 +1,5 @@
 /*
- * @(#)ConstDeclaration.java                        2.1 2003/10/07
+ * @(#)EmptyCommand.java                        2.1 2003/10/07
  *
  * Copyright (C) 1999, 2003 D.A. Watt and D.F. Brown
  * Dept. of Computing Science, University of Glasgow, Glasgow G12 8QQ Scotland
@@ -16,20 +16,13 @@ package Triangle.AbstractSyntaxTrees;
 
 import Triangle.SyntacticAnalyzer.SourcePosition;
 
-public class ConstDeclaration extends Declaration {
+public class NothingCommand extends Command {
 
-  public ConstDeclaration (Identifier iAST, Expression eAST,
-                    SourcePosition thePosition) {
+  public NothingCommand (SourcePosition thePosition) {
     super (thePosition);
-    I = iAST;
-    E = eAST;
   }
 
-  public Identifier I;
-  public Expression E;
-
-    @Override
-    public Object visit(Visitor v, Object o) {
-        return v.visitConstDeclaration(this, o);
-    }
+  public Object visit(Visitor v, Object o) {
+    return v.visitNothingCommand(this, o);
+  }
 }

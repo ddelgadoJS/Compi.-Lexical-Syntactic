@@ -22,17 +22,20 @@ public class SourceFile {
   java.io.File sourceFile;
   java.io.FileInputStream source;
   int currentLine;
+  int currentPosition;
 
   public SourceFile(String filename) {
     try {
       sourceFile = new java.io.File(filename);
       source = new java.io.FileInputStream(sourceFile);
       currentLine = 1;
+      currentPosition = 1;
     }
     catch (java.io.IOException s) {
       sourceFile = null;
       source = null;
       currentLine = 0;
+      currentPosition = 0;
     }
   }
 
@@ -44,6 +47,10 @@ public class SourceFile {
         c = EOT;
       } else if (c == EOL) {
           currentLine++;
+          currentPosition = 1;
+      }
+      if (c != ' '){
+        currentPosition++;
       }
       return (char) c;
     }
@@ -54,5 +61,9 @@ public class SourceFile {
 
   int getCurrentLine() {
     return currentLine;
+  }
+  
+  int getCurrentPosition(){
+      return currentPosition;
   }
 }
