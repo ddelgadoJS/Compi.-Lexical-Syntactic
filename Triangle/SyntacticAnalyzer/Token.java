@@ -61,17 +61,17 @@ final class Token extends Object {
   public static final int
 
     // literals, identifiers, operators...
-    INTLITERAL  = 0,
+    INTLITERAL  = 0, 
     CHARLITERAL = 1,
     IDENTIFIER  = 2,
     OPERATOR    = 3,
 
     // reserved words - must be in alphabetical order...
-    AND         = 4,
-    ARRAY       = 5,
+    AND         = 4, // se agrega and
+    ARRAY       = 5, 
     //BEGIN       = 5,// begin deleted, index shifted
-    CONST       = 6,
-    DO          = 7,
+    CONST       = 6, 
+    DO          = 7, // 
     ELSE        = 8,
     ELSIF       = 9,  // ELSIF added.
     END         = 10,
@@ -83,12 +83,12 @@ final class Token extends Object {
     LOOP        = 16, // LOOP added.
     NOTHING     = 17, // NOTHING added.
     OF          = 18,
-    PRIVATE     = 19,
+    PRIVATE     = 19, // private agregado
     PROC        = 20,
-    REC         = 21,
+    REC         = 21, // rec agregago
     RECORD      = 22,
-    THEN        = 23,
-    TO          = 24,
+    THEN        = 23, 
+    TO          = 24, // to until
     TYPE        = 25,
     UNTIL       = 26, // UNTIL added.      
     VAR         = 27,
@@ -162,7 +162,7 @@ final class Token extends Object {
     "<error>"
   };
 
-  private final static int  firstReservedWord = Token.AND,
+  private final static int  firstReservedWord = Token.AND, // se edita para que tome en cuenta el and agregado
                 lastReservedWord  = Token.WHILE;
 
 }

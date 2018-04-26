@@ -1,6 +1,6 @@
 let
  const i ~ 2;
- var j: Integer;
+ var x: Integer;
  var k: Integer;
  var num: Integer;
  var a: array 5 .. 9 of Integer;
@@ -8,16 +8,16 @@ let
  type Date ~ array 1..6 of Integer;
  var Identifier := 4+6;
  rec func t (x: Integer, y: Integer): Integer ~ 7  
- and proc res(x: Integer, y: Integer) ~ x:=x+y end;
- private
-  var j: Integer
-  in
-  var x: Integer
-  end
+ and proc res(x: Integer, y: Integer) ~ x:=x+y end
 in
- getint (var num); ! Number of iterations.
- i:= 1;
- j:= 2;
+ nothing;
+ loop while x < 5 do x:=x+1 end;
+ loop until x = 0 do x:=x-1 end;
+ loop do x:=x+1 while x<5 end;
+ loop do x:=x-1 until x=0 end;
  let var i: Integer in i:=0 end;
- if x = 2 then x:= 3 elsif x = 5 then x:=1 elsif x = 4 then x:=1 else x:= 4 end;
+ if x = 2 then x:= 3 
+ elsif x = 5 then x:=1 
+ elsif x = 4 then x:=1 
+ else x:= 4 end;
 end 

@@ -227,102 +227,112 @@ public class Parser {
     }
       break;
 
-    //Agregar "loop" "while" Expression "do" Command
+    //Se agrega case Token.LOOP para loopCommand, casos de while, until, do y for
     case Token.LOOP: {
       acceptIt();
-      switch (currentToken.kind) {
+      switch (currentToken.kind) { // switch para casos en el LOOP
 
-      case Token.WHILE: {
-        acceptIt();
-        Expression eAST = parseExpression();
-        accept(Token.DO);
-        Command cAST = parseCommand();
-        accept(Token.END);
+      case Token.WHILE: { // caso para while
+        acceptIt(); // se acepta el token
+        Expression eAST = parseExpression(); // parse para la expresion
+        accept(Token.DO); // para comando definido se espera un do 
+        Command cAST = parseCommand(); // parse para el comando
+        accept(Token.END); // para comando definido se espera un end para indicar final del comando
         finish(commandPos);
-        commandAST = new WhileCommand(eAST, cAST, commandPos);
+        commandAST = new WhileCommand(eAST, cAST, commandPos); // se genera estructura para AST del tipo revisado
       }
         break;
 
-      case Token.UNTIL: {
-        acceptIt();
-        Expression eAST = parseExpression();
-        accept(Token.DO);
-        Command cAST = parseCommand();
-        accept(Token.END);
+      case Token.UNTIL: { // caso de UNTIL
+        acceptIt(); // se acepta el token UNTIL
+        Expression eAST = parseExpression(); // parse para expresion
+        accept(Token.DO); // el comando espera un do 
+        Command cAST = parseCommand(); // parse para comando
+        accept(Token.END); // el token end indica el final del comando
         finish(commandPos);
-        commandAST = new UntilCommand(eAST, cAST, commandPos);
+        commandAST = new UntilCommand(eAST, cAST, commandPos); // se genera estructura para AST del tipo revisado
       }
         break;
 
-      case Token.DO: {
-        acceptIt();
-        Command cAST = parseCommand();
+      case Token.DO: { // caso de do
+        acceptIt(); // se acepta token do
+        Command cAST = parseCommand(); // parse para el comando
 
-        if (currentToken.kind == Token.WHILE) {
+        // en este caso existen dos formas para el loop do
+        if (currentToken.kind == Token.WHILE) { // caso de do while
+          acceptIt(); 
+          Expression eAST = parseExpression();
+          accept(Token.END);
+          finish(commandPos);
+          commandAST = new DoWhileCommand(cAST, eAST, commandPos); // estructura para AST de DoWhile
+        } else if (currentToken.kind == Token.UNTIL) { // caso de do until
           acceptIt();
           Expression eAST = parseExpression();
           accept(Token.END);
           finish(commandPos);
-          commandAST = new DoWhileCommand(cAST, eAST, commandPos);
+          commandAST = new DoUntilCommand(cAST, eAST, commandPos); // estructura para AST de DoUntil
         } else {
-          accept(Token.UNTIL);
-          Expression eAST = parseExpression();
-          accept(Token.END);
-          finish(commandPos);
-          commandAST = new DoUntilCommand(cAST, eAST, commandPos);
+          syntacticError("\"%\" cannot create a doCommand", currentToken.spelling); // se genera error al encontrar otro token
         }
+        
       }
         break;
 
-      case Token.FOR: {
+      case Token.FOR: { // caso de loop for
         acceptIt();
-        Identifier iAST = parseIdentifier();
-        accept(Token.BECOMES);
-        Expression eAST = parseExpression();
-        accept(Token.TO);
-        Expression eAST1 = parseExpression();
-        accept(Token.DO);
-        Command cAST = parseCommand();
-        accept(Token.END);
+        Identifier iAST = parseIdentifier(); // parse para identificador
+        accept(Token.BECOMES); // se espera token :=
+        Expression eAST = parseExpression(); // parse para primera expresion
+        accept(Token.TO); // se espera token to
+        Expression eAST1 = parseExpression(); // parse para segunda expresion
+        accept(Token.DO); // se espera token do
+        Command cAST = parseCommand(); // parse para command
+        accept(Token.END); // se espera token end para indicar final del comando
         finish(commandPos);
-        commandAST = new ForCommand(iAST, eAST, eAST1, cAST, commandPos);
+        commandAST = new ForCommand(iAST, eAST, eAST1, cAST, commandPos); // se genera estructura para AST forCommand
       }
         break;
-
+       // error para loop command al no encontrar ningunos de los tokens esperados
+      default:
+        syntacticError("\"%\" cannot create a loopCommand", currentToken.spelling);
+        break;
       }
     }
       break;
 
-    case Token.LET: {
+    case Token.LET: { // caso para single-command let
       acceptIt();
-      Declaration dAST = parseDeclaration();
-      accept(Token.IN);
-      Command cAST = parseCommand();
-      accept(Token.END);
+      Declaration dAST = parseDeclaration(); // parse para declaracion
+      accept(Token.IN); // se acepta el token in
+      Command cAST = parseCommand(); // parser para comando 
+      accept(Token.END); // se acepta token end que indica el final del comando 
       finish(commandPos);
-      commandAST = new LetCommand(dAST, cAST, commandPos);
+      commandAST = new LetCommand(dAST, cAST, commandPos); //  se crea estructura para letCommand
     }
       break;
     //"if" Expression "then" Command ("elsif" Expression "then" Command)*"else" Command "end"
-    case Token.IF:
+    case Token.IF: // caso del if command
       {
        Command c2AST = null;
-       acceptIt();
-       Expression eAST = parseExpression();
-       accept(Token.THEN);
-       Command c1AST = parseCommand();
+       acceptIt(); // se acepta token if
+       Expression eAST = parseExpression(); // parse para la expresion
+       accept(Token.THEN); // se acepta token then
+       Command c1AST = parseCommand(); // parse para comando
        
+       // en caso de tener elsif se llama a funcion recursuva que genera estructura para el AST
        if(currentToken.kind == Token.ELSIF){
-          c2AST = parserElsIf();
+          c2AST = parserElsIf(); // se genera estructura del elsif
        }
-       else{
-          accept(Token.ELSE);
+       else if (currentToken.kind == Token.ELSE){
+          acceptIt(); // 
           c2AST = parseCommand();
+       }else {
+           syntacticError("\"%\" cannot create a ifCommand", currentToken.spelling); // se reporta error de sintaxis
        }
        
-       accept(Token.END);
+       accept(Token.END); // se acpeta token end para final del comando
        finish(commandPos);
-       commandAST = new IfCommand(eAST, c1AST,c2AST, commandPos);
+       commandAST = new IfCommand(eAST, c1AST,c2AST, commandPos); // se crea estructura para ifCommand
       }
       break;
       
@@ -359,11 +369,11 @@ public class Parser {
       }
       break;
     */
-    case Token.NOTHING:
+    case Token.NOTHING: // caso para comando nothing
     {
-        acceptIt();
+        acceptIt(); // se acepta el token
         finish(commandPos);
-        commandAST = new NothingCommand(commandPos);
+        commandAST = new NothingCommand(commandPos); // crea el comando nothing
     }
 
     case Token.SEMICOLON:
@@ -373,7 +383,7 @@ public class Parser {
     case Token.EOT:
      
       finish(commandPos);
-      commandAST = new NothingCommand(commandPos);
+      commandAST = new NothingCommand(commandPos); // se cambia emptyCommand por nothingCommand
       break;
 
     default:
